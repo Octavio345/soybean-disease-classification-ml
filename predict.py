@@ -31,7 +31,7 @@ def predict_image(img_path, threshold=0.60, margin_threshold=0.15):
     img = cv2.imread(img_path)
 
     if img is None:
-        print("❌ Erro: imagem não encontrada.")
+        print("Erro: imagem não encontrada.")
         print("Caminho recebido:", img_path)
         return
 
@@ -54,18 +54,18 @@ def predict_image(img_path, threshold=0.60, margin_threshold=0.15):
     second_conf = float(prediction[second_idx])
     margin      = confidence - second_conf
 
-    print("\n📊 Probabilidades:")
+    print("\nProbabilidades:")
     for i, c in enumerate(classes):
         print(f"  {c}: {prediction[i]*100:.2f}%")
 
-    print("\n🔎 Top-2:")
+    print("\nTop-2:")
     print(f"  1) {classes[idx]}: {confidence*100:.2f}%")
     print(f"  2) {classes[second_idx]}: {second_conf*100:.2f}%")
     print(f"  Margem entre 1º e 2º: {margin*100:.2f} pp")
 
-    print("\n🎯 Resultado Final:")
+    print("\nResultado Final:")
     if confidence < threshold or margin < margin_threshold:
-        print("  ⚠️ Diagnóstico inconclusivo")
+        print(" Diagnóstico inconclusivo")
     else:
         print(f"  {classes[idx].replace('_', ' ').upper()} ({confidence*100:.2f}%)")
 

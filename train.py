@@ -151,24 +151,8 @@ def treinar(model, base_model, train_data, test_data):
     )
 
 def salvar_modelo(num_classes):
-    """
-    PROBLEMA RAIZ (definitivo):
-    Nessa versão do Keras (2.x / TF 2.10), tanto .keras quanto .h5
-    chamam model.get_config() que tenta serializar TODA a config do modelo
-    para JSON — incluindo os EagerTensors internos do EfficientNetB3
-    (as médias de normalização do ImageNet).
 
-    ÚNICA SOLUÇÃO que bypassa esse problema:
-    tf.saved_model.save() — usa formato Protobuf (binário), nunca JSON.
-    Os pesos também são salvos separadamente como .weights.h5 para backup.
-
-    Para carregar na API depois:
-        model = tf.saved_model.load("models/modelo_ml_savedmodel")
-    """
-
-    print("\n========================================")
-    print("  SALVANDO MODELO FINAL")
-    print("========================================")
+    print("salvando modelo final")
 
 
     print("\n[1/4] Revertendo política para float32...")
@@ -216,4 +200,4 @@ if __name__ == "__main__":
     with open("models/classes.json", "w") as f:
         json.dump(classes, f, ensure_ascii=False, indent=2)
 
-    print("\TREINO FINALIZADO SEM ERRO (AGORA DE VERDADE)")
+    print("treino finalizado")
